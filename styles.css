@@ -37,6 +37,10 @@ body{
 	padding-left:50px;	
 }
 
+
+#play img {
+    border-radius: 15px;
+}
 #levelselectscreen input {
 	margin:20px;
 	cursor:pointer;
