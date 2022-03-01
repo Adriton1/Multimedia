@@ -398,26 +398,27 @@ var levels = {
 	data:[
 	 {   // Primer nivel 
 		foreground:'desert-foreground',
-		background:'space_background1',
+		//background:'space_background1',
+		background:'clouds-background',
 		entities:[
 			{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 			{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
 
 			{type:"block", name:"wood", x:520,y:380,angle:90,width:100,height:25},
 			{type:"block", name:"glass", x:520,y:280,angle:90,width:100,height:25},								
-			{type:"villain", name:"burger",x:520,y:205,calories:590},
+			{type:"villain", name:"Villano1",x:520,y:205,calories:590},
 
 			{type:"block", name:"wood", x:620,y:380,angle:90,width:100,height:25},
 			{type:"block", name:"glass", x:620,y:280,angle:90,width:100,height:25},								
-			{type:"villain", name:"fries", x:620,y:205,calories:420},				
+			{type:"villain", name:"Villano1", x:620,y:205,calories:420},				
 
-			{type:"hero", name:"orange",x:80,y:405},
-			{type:"hero", name:"apple",x:140,y:405},
+			{type:"hero", name:"heroe2",x:80,y:405},
+			{type:"hero", name:"heroe1",x:140,y:405},
 		]
 	 },
 		{   // Segundo nivel
 			foreground:'desert-foreground',
-			background:'space_background2',
+			background:'clouds-background',
 			entities:[
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
 				{type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
@@ -432,13 +433,13 @@ var levels = {
 				{type:"block", name:"glass", x:770,y:255,angle:90,width:100,height:25},
 				{type:"block", name:"wood", x:720,y:192.5,width:100,height:25},	
 
-				{type:"villain", name:"burger",x:715,y:155,calories:590},
-				{type:"villain", name:"fries",x:670,y:405,calories:420},
-				{type:"villain", name:"sodacan",x:765,y:400,calories:150},
+				{type:"villain", name:"Villano1",x:715,y:155,calories:590},
+				{type:"villain", name:"Villano1",x:670,y:405,calories:420},
+				{type:"villain", name:"Villano1",x:765,y:400,calories:150},
 
-				{type:"hero", name:"strawberry",x:30,y:415},
-				{type:"hero", name:"orange",x:80,y:405},
-				{type:"hero", name:"apple",x:140,y:405},
+				{type:"hero", name:"heroe2",x:30,y:415},
+				{type:"hero", name:"heroe1",x:80,y:405},
+				{type:"hero", name:"heroe1",x:140,y:405},
 			]
 		}
 	],
@@ -559,6 +560,29 @@ var entities = {
 			friction:0.5,
 			restitution:0.4,	
 		},
+		"heroe1":{
+			shape:"circle",
+			radius:25,
+			density:1.5,
+			friction:0.2,
+			restitution:0.4,	
+		},
+		"heroe2":{
+			shape:"circle",
+			radius:15,
+			density:1.3,
+			friction:0.3,
+			restitution:0.4,	
+		},
+		"Villano1":{
+			shape:"rectangle",
+			fullHealth:50,
+			width:40,
+			height:50,
+			density:1,
+			friction:0.5,
+			restitution:0.6,	
+		},
 	},
 	// Tomar la entidad, crear un cuerpo box2d y añadirlo al mundo
 	create:function(entity){
@@ -590,6 +614,7 @@ var entities = {
 					box2d.createCircle(entity,definition);					
 				}
 			case "villain": // Pueden ser círculos o rectángulos
+			if (entity.type == "villain"){
 				entity.health = definition.fullHealth;
 				entity.fullHealth = definition.fullHealth;
 				entity.sprite = loader.loadImage("images/entities/Villanos/"+entity.name+".png");
@@ -603,7 +628,8 @@ var entities = {
 					entity.height = definition.height;
 					box2d.createRectangle(entity,definition);					
 				}												 
-				break;							
+				break;
+			}							
 			default:
 				console.log("Undefined entity type",entity.type);
 				break;
