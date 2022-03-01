@@ -462,8 +462,8 @@ var levels = {
 			]
 		},
 		{ // Tercer nivel
-			foreground:'suelo1',
-			background:'space_background2',
+			foreground:'suelo2',
+			background:'space_background3',
                entities:[
                    {type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
                    {type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
@@ -489,8 +489,8 @@ var levels = {
                ]
 		},
 		{   // Cuarto nivel
-			foreground:'suelo1',
-			background:'space_background2',
+			foreground:'lava',
+			background:'space_background4',
                entities:[
 				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
                 {type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
