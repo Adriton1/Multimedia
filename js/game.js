@@ -54,7 +54,7 @@ var game = {
 		game.backgroundMusic = loader.loadSound('audio/mainTheme');
 
 		game.slingshotReleasedSound = loader.loadSound("audio/released");
-		game.bounceSound = loader.loadSound('audio/bounce');
+		game.bounceSound = loader.loadSound('audio/alien');
 		game.breakSound = {
 			"glass":loader.loadSound('audio/glassbreak'),
 			"iron":loader.loadSound('audio/woodbreak')
@@ -95,6 +95,27 @@ var game = {
 		$('#levelselectscreen').show('slow');
 
 	},
+
+	//añadimos settings
+	showMenuSettings:function(){
+		game.click.play();
+		$('#settingscreen').hide();
+        $('#gamestartscreen').show('slow');
+	},
+
+	showSettings:function(){
+		game.click.play();
+        $('.gamelayer').hide();
+        $('#settingscreen').show('slow');
+	},
+
+	saveSettings:function(){
+		game.click.play();
+		$('#settingscreen').hide();
+        $('#gamestartscreen').show('slow');
+	},
+	//fin settings
+
 	restartLevel:function(){
 		window.cancelAnimationFrame(game.animationFrame);		
 		game.lastUpdateTime = undefined;
