@@ -36,7 +36,7 @@ var b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
 }());
 
 $(window).load(function() {
-	game.init();
+	game.init(); //Evitamos comportamientos inesperados
 });
 
 var game = {
@@ -93,6 +93,7 @@ var game = {
 	showLevelScreen:function(){
 		$('.gamelayer').hide();
 		$('#levelselectscreen').show('slow');
+
 	},
 	restartLevel:function(){
 		window.cancelAnimationFrame(game.animationFrame);		
@@ -566,12 +567,12 @@ var entities = {
 			console.log ("Undefined entity name",entity.name);
 			return;
 		}	
-		switch(entity.type){
+		switch(entity.type){  //AÑADIR EL PATH DE MANERA CORRECTA 
 			case "block": // Rectángulos simples
 				entity.health = definition.fullHealth;
 				entity.fullHealth = definition.fullHealth;
 				entity.shape = "rectangle";	
-				entity.sprite = loader.loadImage("images/entities/"+entity.name+".png");						
+				entity.sprite = loader.loadImage("images/entities/Paredes/"+entity.name+".png");					
 				entity.breakSound = game.breakSound[entity.name];
 				box2d.createRectangle(entity,definition);				
 				break;
@@ -582,10 +583,16 @@ var entities = {
 				box2d.createRectangle(entity,definition);			   
 				break;	
 			case "hero":	// Círculos simples
+			entity.sprite = loader.loadImage("images/entities/Heroes/"+entity.name+".png");
+				entity.shape = definition.shape;
+				if(definition.shape == "circle"){
+					entity.radius = definition.radius  // MIRAR SI FUNCIONA
+					box2d.createCircle(entity,definition);					
+				}
 			case "villain": // Pueden ser círculos o rectángulos
 				entity.health = definition.fullHealth;
 				entity.fullHealth = definition.fullHealth;
-				entity.sprite = loader.loadImage("images/entities/"+entity.name+".png");
+				entity.sprite = loader.loadImage("images/entities/Villanos/"+entity.name+".png");
 				entity.shape = definition.shape;  
 				entity.bounceSound = game.bounceSound;
 				if(definition.shape == "circle"){
