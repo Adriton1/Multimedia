@@ -3,6 +3,7 @@
 	height:480px;
 	background: url(images/splashscreenSpace.jpg);
 	border: 1px solid black;
+	margin: 0 auto; 
 }
 
 .gamelayer {
@@ -110,6 +111,12 @@ endingscreen {
 
 /*CODIGO NUEVO AÑADIDO*/
 
+/*body{
+    background: url(../images/splashscreen_comando_estelar.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}*/
+
 body h1{
     font-family: 'Rubik', sans-serif;
     font-size: 25px;
@@ -122,6 +129,14 @@ body h1{
     margin:auto;
     margin-bottom: 5px;
     margin-top:5px;
+}
+
+#spacewardebug{
+    width: 1000px;
+    height: 480px;
+    border: 1px solid#000000;
+    margin: 0 auto;
+    background: rgb(197, 154, 247);
 }
 
 p.footer1 {
