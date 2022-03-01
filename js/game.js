@@ -51,7 +51,7 @@ var game = {
 	
 		//"Kindergarten" by Gurdonark
 		//http://ccmixter.org/files/gurdonark/26491 is licensed under a Creative Commons license
-		game.backgroundMusic = loader.loadSound('audio/gurdonark-kindergarten');
+		game.backgroundMusic = loader.loadSound('audio/mainTheme');
 
 		game.slingshotReleasedSound = loader.loadSound("audio/released");
 		game.bounceSound = loader.loadSound('audio/bounce');
@@ -224,11 +224,25 @@ var game = {
 			var heroX = game.currentHero.GetPosition().x*box2d.scale;
 			game.panTo(heroX);
 
+			//nuevo codigo relentizar heroe
+			if(game.currentHero.m_linearVelocity.x==0){
+				game.decelerating=250;
+			}
+			if(game.currentHero.m_linearVelocity.x<5 && game.currentHero.m_xf.position.y>13) {
+				game.decelerating++;
+			} else {
+				game.decelerating = 0;
+			}
+			// fin codigo nuevo relentizar
+
 			//Y esperar hasta que deja de moverse o está fuera de los límites
 			if(!game.currentHero.IsAwake() || heroX<0 || heroX >game.currentLevel.foregroundImage.width ){
 				// Luego borra el viejo héroe
 				box2d.world.DestroyBody(game.currentHero);
 				game.currentHero = undefined;
+
+				game.decelerating = 0; // nueva linea
+
 				// y carga el siguiente héroe
 				game.mode = "load-next-hero";
 			}
@@ -279,7 +293,7 @@ var game = {
 			game.stopBackgroundMusic();				
 			if (game.mode=="level-success"){			
 				if(game.currentLevel.number<levels.data.length-1){
-					$('#endingmessage').html('Level Complete. Well Done!!!');
+					$('#endingmessage').html('Level Complete. Well Done!!!'); //añadir contador para poner el siguiente boton bloqueado, es decir, deberemos jugar el nivel anterior para jugar al sig
 					$("#playnextlevel").show();
 				} else {
 					$('#endingmessage').html('All Levels Complete. Well Done!!!');
@@ -446,7 +460,86 @@ var levels = {
 				{type:"hero", name:"heroe1",x:80,y:405},
 				{type:"hero", name:"heroe1",x:140,y:405},
 			]
-		}
+		},
+		{ // Tercer nivel
+			foreground:'suelo1',
+			background:'space_background2',
+               entities:[
+                   {type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
+                   {type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
+       
+                   {type:"block", name:"iron", x:820,y:380,angle:90,width:100,height:25},
+                   {type:"block", name:"iron", x:720,y:380,angle:90,width:100,height:25},
+                   {type:"block", name:"iron", x:620,y:380,angle:90,width:100,height:25},
+                   {type:"block", name:"glass", x:670,y:317.5,width:100,height:25},
+                   {type:"block", name:"glass", x:770,y:317.5,width:100,height:25},				
+   
+                   {type:"block", name:"iron", x:670,y:255,angle:90,width:100,height:25}, // cambiar
+                   {type:"block", name:"iron", x:770,y:255,angle:90,width:100,height:25}, // cambiar
+                   {type:"block", name:"glass", x:720,y:192.5,width:100,height:25},	
+
+				   {type:"villain", name:"Villano1",x:670,y:405,points:100},
+				   {type:"villain", name:"Villano1",x:715,y:280,points:300},
+				   {type:"villain", name:"villano2",x:715,y:155,points:300},
+				   {type:"villain", name:"villano2",x:765,y:400,points:200},
+
+                   {type:"hero", name:"heroe1",x:30,y:415},
+                   {type:"hero", name:"heroe1",x:80,y:405},
+                   {type:"hero", name:"heroe2",x:140,y:405}, //cambiar
+               ]
+		},
+		{   // Cuarto nivel
+			foreground:'suelo1',
+			background:'space_background2',
+               entities:[
+				{type:"ground", name:"dirt", x:500,y:440,width:1000,height:20,isStatic:true},
+                {type:"ground", name:"wood", x:185,y:390,width:30,height:80,isStatic:true},
+
+       
+                //torre izquierda   
+                {type:"block", name:"iron", x:525,y:380,angle:90,width:100,height:25},
+                {type:"block", name:"iron", x:625,y:380,angle:90,width:100,height:25},
+				{type:"block", name:"glass", x:575,y:317.5,width:100,height:25},
+				{type:"villain", name:"villano2",x:575,y:405,points:250},
+                   				
+   				{type:"block", name:"iron", x:525,y:255,angle:90,width:100,height:25},
+                {type:"block", name:"iron", x:625,y:255,angle:90,width:100,height:25},
+                {type:"block", name:"glass", x:575,y:192.5,width:100,height:25},
+				{type:"villain", name:"Villano1",x:575,y:285,points:100},
+
+				{type:"block", name:"iron", x:525,y:140,angle:90,width:100,height:25},
+				{type:"block", name:"iron", x:625,y:140,angle:90,width:100,height:25},
+				{type:"block", name:"glass", x:575,y:77,width:100,height:25},
+				{type:"villain", name:"Villano1",x:575,y:150,points:500}, // cambiar
+
+				//torre derecha   
+                {type:"block", name:"iron", x:840,y:380,angle:90,width:100,height:25},
+                {type:"block", name:"iron", x:940,y:380,angle:90,width:100,height:25},
+				{type:"block", name:"glass", x:890,y:317.5,width:100,height:25},
+				{type:"villain", name:"villano2",x:890,y:405,points:250},
+                   				
+   				{type:"block", name:"iron", x:840,y:255,angle:90,width:100,height:25},
+                {type:"block", name:"iron", x:940,y:255,angle:90,width:100,height:25},
+                {type:"block", name:"glass", x:890,y:192.5,width:100,height:25},
+				{type:"villain", name:"Villano1",x:890,y:285,points:100},
+				   
+				{type:"block", name:"iron", x:840,y:140,angle:90,width:100,height:25},
+				{type:"block", name:"iron", x:940,y:140,angle:90,width:100,height:25},
+				{type:"block", name:"glass", x:890,y:77,width:100,height:25},
+				{type:"villain", name:"villano2",x:890,y:150,points:500}, // cambiar
+
+				//zona Boss
+				{type:"block", name:"iron", x:660,y:370,angle:90,width:150,height:35}, //cambiar
+				{type:"block", name:"iron", x:800,y:370,angle:90,width:150,height:35}, // cambiar
+				{type:"block", name:"iron", x:730,y:307,width:160,height:25},
+				{type:"villain", name:"Villano1",x:730,y:250,points:500}, // cambiar
+				{type:"villain", name:"villano2",x:730,y:380,points:5000},	// cambiar es el boss
+
+				{type:"hero", name:"heroe1",x:30,y:415},
+				{type:"hero", name:"heroe2",x:80,y:405},
+				{type:"hero", name:"heroe2",x:140,y:405}, // cambiar
+			   ]
+		   }
 	],
 
 	// Inicializar pantalla de selección de nivel
@@ -520,7 +613,7 @@ var entities = {
 		},
 		"heroe1":{
 			shape:"circle",
-			radius:25,
+			radius:20,
 			density:1.5,
 			friction:0.2,
 			restitution:0.4,	
