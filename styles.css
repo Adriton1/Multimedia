@@ -6,6 +6,13 @@
 	margin: 0 auto; 
 }
 
+body{
+    
+    background: url(images/Fondo.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
 .gamelayer {
 	width:640px;
 	height:480px;
