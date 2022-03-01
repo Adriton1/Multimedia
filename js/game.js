@@ -101,7 +101,7 @@ var game = {
 
 	},
 
-	//añadimos settings
+	/*añadimos settings
 	showMenuSettings:function(){
 		game.click.play();
 		$('#settingscreen').hide();
@@ -119,7 +119,7 @@ var game = {
 		$('#settingscreen').hide();
         $('#gamestartscreen').show('slow');
 	},
-	//fin settings
+	fin settings*/
 
 	restartLevel:function(){
 		window.cancelAnimationFrame(game.animationFrame);		
@@ -254,15 +254,14 @@ var game = {
 			if(game.currentHero.m_linearVelocity.x==0){
 				game.decelerating=250;
 			}
-			if(game.currentHero.m_linearVelocity.x<5 && game.currentHero.m_xf.position.y>13) {
-				game.decelerating++;
+			if(game.currentHero.m_linearVelocity.x<5 && game.currentHero.m_xf.position.y>0) { // VAMOS DECELERANDO AL HEROE
+				game.decelerating+=10;
 			} else {
 				game.decelerating = 0;
 			}
-			// fin codigo nuevo relentizar
 
 			//Y esperar hasta que deja de moverse o está fuera de los límites
-			if(!game.currentHero.IsAwake() || heroX<0 || heroX >game.currentLevel.foregroundImage.width ){
+			if(!game.currentHero.IsAwake() || heroX<0 || heroX >game.currentLevel.foregroundImage.width || game.decelerating == 10000){ // ADRI nueva condicion if(!game.currentHero.IsAwake() || heroX<0 || heroX >game.currentLevel.foregroundImage.width || game.villains.length === 0)
 				// Luego borra el viejo héroe
 				box2d.world.DestroyBody(game.currentHero);
 				game.currentHero = undefined;
@@ -280,7 +279,7 @@ var game = {
 
 			// Comprobar si algún villano está vivo, si no, termine el nivel (éxito)
 			if (game.villains.length == 0){
-				game.mode = "level-success";
+				game.mode = "level-success"; // ADRI añadir contador para ver si se ha pasado el nivel o no
 				return;
 			}
 
