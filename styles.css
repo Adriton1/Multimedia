@@ -40,8 +40,9 @@ body{
 #levelselectscreen input {
 	margin:20px;
 	cursor:pointer;
-	background:url(images/icons/level.png) no-repeat;
-	color:yellow;
+	background:url(images/icons/ringed-planet.png) no-repeat;
+    border-radius: 15px;
+	color:black;
 	font-size: 20px;
 	width:64px;
 	height:64px;
@@ -123,6 +124,7 @@ endingscreen {
     background-size: cover;
     background-repeat: no-repeat;
 }*/
+
 
 body h1{
     font-family: 'Rubik', sans-serif;
