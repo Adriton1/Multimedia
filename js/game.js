@@ -74,6 +74,9 @@ var game = {
 		game.backgroundMusic.play();
 		toggleImage.src="images/icons/sound.png";	
 	},
+
+
+	
 	stopBackgroundMusic:function(){
 		var toggleImage = $("#togglemusic")[0];	
 		toggleImage.src="images/icons/nosound.png";	
@@ -93,6 +96,8 @@ var game = {
 	showLevelScreen:function(){
 		$('.gamelayer').hide();
 		$('#levelselectscreen').show('slow');
+		game.backgroundMusic.pause();
+
 
 	},
 
@@ -505,8 +510,8 @@ var levels = {
 				   {type:"villain", name:"villano2",x:765,y:400,points:200},
 
                    {type:"hero", name:"heroe1",x:30,y:415},
-                   {type:"hero", name:"heroe1",x:80,y:405},
-                   {type:"hero", name:"heroe2",x:140,y:405}, //cambiar
+                   {type:"hero", name:"heroe3",x:80,y:405},
+                   {type:"hero", name:"heroe1",x:140,y:405}, 
                ]
 		},
 		{   // Cuarto nivel
@@ -521,17 +526,17 @@ var levels = {
                 {type:"block", name:"iron", x:525,y:380,angle:90,width:100,height:25},
                 {type:"block", name:"iron", x:625,y:380,angle:90,width:100,height:25},
 				{type:"block", name:"glass", x:575,y:317.5,width:100,height:25},
-				{type:"villain", name:"villano2",x:575,y:405,points:250},
+				{type:"villain", name:"Villano1",x:575,y:405,points:250},
                    				
    				{type:"block", name:"iron", x:525,y:255,angle:90,width:100,height:25},
                 {type:"block", name:"iron", x:625,y:255,angle:90,width:100,height:25},
                 {type:"block", name:"glass", x:575,y:192.5,width:100,height:25},
-				{type:"villain", name:"Villano1",x:575,y:285,points:100},
+				{type:"villain", name:"villano2",x:575,y:285,points:100},
 
 				{type:"block", name:"iron", x:525,y:140,angle:90,width:100,height:25},
 				{type:"block", name:"iron", x:625,y:140,angle:90,width:100,height:25},
 				{type:"block", name:"glass", x:575,y:77,width:100,height:25},
-				{type:"villain", name:"Villano1",x:575,y:150,points:500}, // cambiar
+				{type:"villain", name:"Villano1",x:575,y:150,points:500}, 
 
 				//torre derecha   
                 {type:"block", name:"iron", x:840,y:380,angle:90,width:100,height:25},
@@ -547,18 +552,18 @@ var levels = {
 				{type:"block", name:"iron", x:840,y:140,angle:90,width:100,height:25},
 				{type:"block", name:"iron", x:940,y:140,angle:90,width:100,height:25},
 				{type:"block", name:"glass", x:890,y:77,width:100,height:25},
-				{type:"villain", name:"villano2",x:890,y:150,points:500}, // cambiar
+				{type:"villain", name:"villano2",x:890,y:150,points:500}, 
 
 				//zona Boss
-				{type:"block", name:"iron", x:660,y:370,angle:90,width:150,height:35}, //cambiar
-				{type:"block", name:"iron", x:800,y:370,angle:90,width:150,height:35}, // cambiar
+				{type:"block", name:"iron", x:660,y:370,angle:90,width:150,height:35}, 
+				{type:"block", name:"iron", x:800,y:370,angle:90,width:150,height:35}, 
 				{type:"block", name:"iron", x:730,y:307,width:160,height:25},
-				{type:"villain", name:"Villano1",x:730,y:250,points:500}, // cambiar
-				{type:"villain", name:"villano2",x:730,y:380,points:5000},	// cambiar es el boss
+				{type:"villain", name:"Villano1",x:730,y:250,points:500}, 
+				{type:"villain", name:"boss",x:730,y:380,points:5000},	
 
 				{type:"hero", name:"heroe1",x:30,y:415},
 				{type:"hero", name:"heroe2",x:80,y:405},
-				{type:"hero", name:"heroe2",x:140,y:405}, // cambiar
+				{type:"hero", name:"heroe3",x:140,y:405}, 
 			   ]
 		   }
 	],
@@ -646,6 +651,14 @@ var entities = {
 			friction:0.3,
 			restitution:0.4,	
 		},
+		
+		"heroe3":{
+			shape:"circle",
+			radius:30,
+			density:1.7,
+			friction:0.5,
+			restitution:0.4,	
+		},
 		"Villano1":{
 			shape:"rectangle",
 			fullHealth:50,
@@ -663,6 +676,15 @@ var entities = {
 			density:1,
 			friction:0.5,
 			restitution:0.6,	
+		},		
+		"boss":{
+			shape:"rectangle",
+            fullHealth:350,
+            width:100,
+            height:150,
+            density:1,
+            friction:0.5,
+            restitution:0.1,
 		},
 	},
 	// Tomar la entidad, crear un cuerpo box2d y añadirlo al mundo
