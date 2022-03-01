@@ -224,11 +224,25 @@ var game = {
 			var heroX = game.currentHero.GetPosition().x*box2d.scale;
 			game.panTo(heroX);
 
+			//nuevo codigo relentizar heroe
+			if(game.currentHero.m_linearVelocity.x==0){
+				game.decelerating=250;
+			}
+			if(game.currentHero.m_linearVelocity.x<5 && game.currentHero.m_xf.position.y>13) {
+				game.decelerating++;
+			} else {
+				game.decelerating = 0;
+			}
+			// fin codigo nuevo relentizar
+
 			//Y esperar hasta que deja de moverse o está fuera de los límites
 			if(!game.currentHero.IsAwake() || heroX<0 || heroX >game.currentLevel.foregroundImage.width ){
 				// Luego borra el viejo héroe
 				box2d.world.DestroyBody(game.currentHero);
 				game.currentHero = undefined;
+
+				game.decelerating = 0; // nueva linea
+
 				// y carga el siguiente héroe
 				game.mode = "load-next-hero";
 			}
