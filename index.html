@@ -19,31 +19,45 @@
 			<canvas id="gamecanvas" width="640" height="480" class="gamelayer">			
 			</canvas>
 			
+			<!--Score Screen-->
 			<div id="scorescreen" class="gamelayer">
 				<img id="togglemusic" src="images/icons/sound.png" onclick="game.toggleBackgroundMusic();">
 				<img src="images/icons/prev.png" onclick="game.restartLevel();">
 				<img src="images/icons/return.png" onclick="game.showLevelScreen();">
 				<span id="score">Score: 0</span>
 			</div>
+			<!--Fin Score Screen-->
 			
+			<!--Game Start Screen-->
 			<div id="gamestartscreen" class="gamelayer">
 				<img src="images/icons/play.png" alt="Play Game" onclick = "game.showLevelScreen();"><br>
-				<img src="images/icons/settings.png" alt="Settings" onclick="game.showLevelScreen()">  <!--Prueba-->
+				<img src="images/icons/settings.png" alt="Settings" onclick="game.showSettingsScreen()">  <!--Prueba-->
 			</div>
+			<!--Fin Game Start Screen-->
 
-			<!--Prueba template settings 
-			<div id="settingscreen">
-				<h3 id="settings">SETTINGS</h3>
+			<!--Level Screen-->
+			<div>
+				<input id="backbutton" type="image" src="images/icons/return.png" onclick="game.showMainScreen()">  
+				<!--<button id="backbutton" onclick="game.showMainScreen()"></button>-->
+				<div id="levelselectscreen" class="gamelayer">
+					<!--<input type="button" style="padding: 10px; margin-top: 10px;">-->
+				</div>
 			</div>
-			Fin Prueba template settings -->
+			<!--Fin Level Screen-->
 			
-			<div id="levelselectscreen" class="gamelayer">
-			</div>
-			
+			<!--Loading Screen-->
 			<div id="loadingscreen" class="gamelayer">
 				<div id="loadingmessage"></div>
 			</div>
+			<!--Fin Loading Screen-->
 			
+			<!--Settings Screen-->
+			<div id="settingsscreen">
+			</div>
+			<!--Fin Settings Screen-->
+
+
+			<!--Ending Screen-->
 			<div id="endingscreen" class="gamelayer">
 				<div>
 					<p id="endingmessage">The Level Is Over Message</p>
@@ -52,6 +66,7 @@
 					<p id="returntolevelscreen"onclick="game.showLevelScreen();"><img src="images/icons/return.png"> Return to Level Screen</p>
 				</div>
 			</div>	
+			<!--Fin Ending Screen-->
 			
 		</div>
 		<br>

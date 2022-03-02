@@ -97,8 +97,17 @@ var game = {
 		$('.gamelayer').hide();
 		$('#levelselectscreen').show('slow');
 		game.backgroundMusic.pause();
+	},
 
+	showMainScreen:function(){
+		$('#levelselectscreen').hide();
+		$('#gamestartscreen').show('slow'); //diferencia entre poner gamestartscreen y gamelayer? uno es una clase y otro un id
+	},
 
+	showSettingsScreen:function(){
+		$('#gamestartscreen').hide();
+		$('#settingsscreen').show('slow');
+		$('#settingsscreen').html("<h3>SETTINGS</h3>"); //se muestra en el html comun
 	},
 
 	/*añadimos settings
@@ -629,6 +638,8 @@ var levels = {
 	// Inicializar pantalla de selección de nivel
 	init:function(){
 		var html = "";
+		//html+= '<input style="padding: 10px; margin-top: 10px;" type="button" value="Back">' 
+		//$('#levelselectscreen').html(html);
 		for (var i=0; i < levels.data.length; i++) {
 			var level = levels.data[i];
 			html += '<input type="button" value="'+(i+1)+'">';
