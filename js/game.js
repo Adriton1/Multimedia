@@ -679,12 +679,14 @@ var levels = {
 var entities = {
 	definitions:{
 		"glass":{
+			shape:"rectangle",
 			fullHealth:1000,
 			density:2.4,
 			friction:0.4,
 			restitution:0.15,
 		},
 		"iron":{
+			shape:"rectangle",
 			fullHealth:5000,
 			density:0.7,
 			friction:0.4,
@@ -724,7 +726,7 @@ var entities = {
 		},
 		"villano2":{
 			shape:"rectangle",
-			fullHealth:50,
+			fullHealth:200,
 			width:40,
 			height:50,
 			density:1,
@@ -733,7 +735,7 @@ var entities = {
 		},		
 		"boss":{
 			shape:"rectangle",
-            fullHealth:350,
+            fullHealth:500,
             width:100,
             height:150,
             density:1,
