@@ -46,6 +46,9 @@ var game = {
 		levels.init();
 		loader.init();
 		mouse.init();
+		//$('#backbuttonscreen').hide();
+		//$('#settingsscreen').hide(); 
+		$('.buttonlayer').hide();
 
 		// Cargar todos los efectos de sonido y música de fondo
 	
@@ -95,40 +98,24 @@ var game = {
 	},
 	showLevelScreen:function(){
 		$('.gamelayer').hide();
+		$('#backbuttonscreen').show('slow');
 		$('#levelselectscreen').show('slow');
 		game.backgroundMusic.pause();
 	},
 
 	showMainScreen:function(){
 		$('#levelselectscreen').hide();
+		$('#settingsscreen').hide();
 		$('#gamestartscreen').show('slow'); //diferencia entre poner gamestartscreen y gamelayer? uno es una clase y otro un id
+		$('.buttonlayer').hide();
 	},
 
 	showSettingsScreen:function(){
-		$('#gamestartscreen').hide();
+		$('.gamelayer').hide();
 		$('#settingsscreen').show('slow');
+		$('#backbuttonscreen').show('slow');
 		$('#settingsscreen').html("<h3>SETTINGS</h3>"); //se muestra en el html comun
 	},
-
-	/*añadimos settings
-	showMenuSettings:function(){
-		game.click.play();
-		$('#settingscreen').hide();
-        $('#gamestartscreen').show('slow');
-	},
-
-	showSettings:function(){
-		game.click.play();
-        $('.gamelayer').hide();
-        $('#settingscreen').show('slow');
-	},
-
-	saveSettings:function(){
-		game.click.play();
-		$('#settingscreen').hide();
-        $('#gamestartscreen').show('slow');
-	},
-	fin settings*/
 
 	restartLevel:function(){
 		window.cancelAnimationFrame(game.animationFrame);		
@@ -460,7 +447,7 @@ var levels = {
 			{type:"block", name:"glass", x:620,y:280,angle:90,width:100,height:25},								
 			{type:"villain", name:"Villano1", x:620,y:205,calories:420},				
 
-			{type:"hero", name:"heroe2",x:80,y:405},
+			{type:"hero", name:"heroe1",x:80,y:405},
 			{type:"hero", name:"heroe1",x:140,y:405},
 		]
 	 },
@@ -492,7 +479,6 @@ var levels = {
 
 				{type:"hero", name:"heroe2",x:30,y:415},
 				{type:"hero", name:"heroe1",x:80,y:405},
-				{type:"hero", name:"heroe1",x:140,y:405},
 			]
 		},
 		{ // Tercer nivel
@@ -528,7 +514,7 @@ var levels = {
 
 					
 					{type:"hero", name:"heroe1",x:30,y:415},
-					{type:"hero", name:"heroe3",x:80,y:405},
+					{type:"hero", name:"heroe2",x:80,y:405},
 					{type:"hero", name:"heroe1",x:140,y:405}, 
                ]
 		},
@@ -574,7 +560,7 @@ var levels = {
 				{type:"block", name:"glass", x:790,y:77,width:100,height:25},
 				{type:"villain", name:"villano2",x:790,y:150,points:500},  
 
-				{type:"hero", name:"heroe3",x:30,y:415},
+				{type:"hero", name:"heroe1",x:30,y:415},
 				{type:"hero", name:"heroe2",x:80,y:405},
 				{type:"hero", name:"heroe3",x:140,y:405},
 				
@@ -638,8 +624,6 @@ var levels = {
 	// Inicializar pantalla de selección de nivel
 	init:function(){
 		var html = "";
-		//html+= '<input style="padding: 10px; margin-top: 10px;" type="button" value="Back">' 
-		//$('#levelselectscreen').html(html);
 		for (var i=0; i < levels.data.length; i++) {
 			var level = levels.data[i];
 			html += '<input type="button" value="'+(i+1)+'">';
