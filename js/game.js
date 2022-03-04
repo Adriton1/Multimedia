@@ -45,9 +45,7 @@ var game = {
 		// Inicialización de objetos   
 		levels.init();
 		loader.init();
-		mouse.init();
-		//$('#backbuttonscreen').hide();
-		//$('#settingsscreen').hide(); 
+		mouse.init(); 
 		$('.buttonlayer').hide();
 
 		// Cargar todos los efectos de sonido y música de fondo
@@ -77,9 +75,9 @@ var game = {
 		game.backgroundMusic.play();
 		toggleImage.src="images/icons/sound.png";	
 	},
-
-
 	
+
+
 	stopBackgroundMusic:function(){
 		var toggleImage = $("#togglemusic")[0];	
 		toggleImage.src="images/icons/nosound.png";	
@@ -101,7 +99,7 @@ var game = {
 		$('#backbuttonscreen').show('slow');
 		$('#levelselectscreen').show('slow');
 		game.backgroundMusic.pause();
-	},
+	}, 
 
 	showMainScreen:function(){
 		$('#levelselectscreen').hide();
@@ -113,8 +111,8 @@ var game = {
 	showSettingsScreen:function(){
 		$('.gamelayer').hide();
 		$('#settingsscreen').show('slow');
-		$('#backbuttonscreen').show('slow');
-		$('#settingsscreen').html("<h3>SETTINGS</h3>"); //se muestra en el html comun
+		//$('#backbuttonscreen').show('slow');
+		//$('#settingsscreen').html("<h3>SETTINGS</h3>"); //se muestra en el html comun
 	},
 
 	restartLevel:function(){
